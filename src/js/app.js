@@ -1,4 +1,5 @@
 App = {
+  // Github issues test 2
   web3Provider: null,
   contracts: {},
   account: '0x0',
