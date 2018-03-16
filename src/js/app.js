@@ -1,5 +1,4 @@
 App = {
-  // Git test
   web3Provider: null,
   contracts: {},
   account: '0x0',
