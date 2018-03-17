@@ -1,5 +1,4 @@
 App = {
-  // Github issues test 2
   web3Provider: null,
   contracts: {},
   account: '0x0',
@@ -30,7 +29,22 @@ App = {
       // Connect provider to interact with the contract
       App.contracts.Election.setProvider(App.web3Provider);
 
+      App.listenForEvents();
+
       return App.render();
+    });
+  },
+
+  listenForEvents: function() {
+    App.contracts.Election.deployed().then(function(instance) {
+      instance.votedEvent({}, {
+        // subscribe to events on the whole blockchain 0-latest
+        fromBlock: 0,
+        toBlock: 'latest'
+      }).watch(function(error, event) {
+        console.log("event triggered", event)
+        App.render();
+      });
     });
   },
 
