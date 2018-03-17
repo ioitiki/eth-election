@@ -17,6 +17,10 @@ contract Election {
     // Needed to keep track of the size of candidates
     uint public candidatesCount;
 
+    event votedEvent (
+        uint indexed _candidateId
+    );
+
     function Election() public {
         addCandidate("Candidate 1");
         addCandidate("Candidate 2");
@@ -39,5 +43,8 @@ contract Election {
 
         // Upadate our candidates vote count
         candidates[_candidateId].voteCount ++;
+
+        // Trigger votedEvent
+        votedEvent(_candidateId);
     }
 }
